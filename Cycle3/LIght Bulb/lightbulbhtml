@@ -1,0 +1,20 @@
+<html>
+	<head>
+		<title>Light Bulb</title>
+	</head>
+	<body>
+		<h1>Light bulb on/off</h1>
+		<img width=150 src="image/tunoff.jpg" id="lightbulb"/>
+		<br><br>
+		<button onclick="turnOn()" >Turn On</button>
+		<button onclick="turnOff()" >Turn Off</button>
+		<script>
+			function turnOn(){
+				document.getElementById('lightbulb').src="image/turnon.jpg";
+			}
+			function turnOff(){
+				document.getElementById('lightbulb').src="image/tunoff.jpg";
+			}
+		</script>
+	</body>
+</html>
