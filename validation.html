@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Registration Form with Validation</title> 
+  <style>
+    .error {
+      color: red;
+    }
+  </style>
+</head> 
+<body> 
+  <h1 align="center">STUDENT REGISTRATION FORM</h1> 
+  <form id="registrationForm" onsubmit="return validateForm()"> 
+    <table align="center" border="2"> 
+      <tbody>
+        <tr> 
+          <td><label for="firstName">FIRST NAME</label></td> 
+          <td><input type="text" id="firstName" name="firstName" maxlength="30" required> (max 30 characters)
+            <span id="firstNameError" class="error"></span>
+          </td> 
+        </tr> 
+        <tr> 
+          <td><label for="lastName">LAST NAME</label></td> 
+          <td><input type="text" id="lastName" name="lastName" maxlength="30" required> (max 30 characters)
+            <span id="lastNameError" class="error"></span>
+          </td> 
+        </tr> 
+        <tr> 
+          <td><label for="email">EMAIL ID</label></td> 
+          <td><input type="email" id="email" name="email" required> 
+            <span id="emailError" class="error"></span>
+          </td> 
+        </tr> 
+        <tr> 
+          <td><label for="mobile">MOBILE NUMBER</label></td> 
+          <td><input type="tel" id="mobile" name="mobile" pattern="[0-9]{10}" maxlength="10" required> (10 digits)
+            <span id="mobileError" class="error"></span>
+          </td> 
+        </tr> 
+        <tr> 
+          <td colspan="2" align="center"> 
+            <button type="submit">Submit</button> 
+            <button type="reset">Reset</button> 
+          </td> 
+        </tr> 
+      </tbody>
+    </table> 
+  </form> 
+
+  <script>
+    // Function to validate the form
+    function validateForm() {
+      // Get form values
+      const firstName = document.getElementById('firstName').value.trim();
+      const lastName = document.getElementById('lastName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const mobile = document.getElementById('mobile').value.trim();
+
+      // Regular Expressions for validation
+      const namePattern = /^[A-Za-z\s]{1,30}$/;
+      const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+      const mobilePattern = /^[0-9]{10}$/;
+
+      let isValid = true;
+
+      // Validate First Name
+      if (!namePattern.test(firstName)) {
+        document.getElementById('firstNameError').textContent = "Please enter a valid First Name (letters only, max 30 characters).";
+        isValid = false;
+      } else {
+        document.getElementById('firstNameError').textContent = "";
+      }
+
+      // Validate Last Name
+      if (!namePattern.test(lastName)) {
+        document.getElementById('lastNameError').textContent = "Please enter a valid Last Name (letters only, max 30 characters).";
+        isValid = false;
+      } else {
+        document.getElementById('lastNameError').textContent = "";
+      }
+
+      // Validate Email
+      if (!emailPattern.test(email)) {
+        document.getElementById('emailError').textContent = "Please enter a valid Email address.";
+        isValid = false;
+      } else {
+        document.getElementById('emailError').textContent = "";
+      }
+
+      // Validate Mobile Number
+      if (!mobilePattern.test(mobile)) {
+        document.getElementById('mobileError').textContent = "Please enter a valid 10-digit Mobile Number.";
+        isValid = false;
+      } else {
+        document.getElementById('mobileError').textContent = "";
+      }
+
+      // If any validation fails, prevent form submission
+      return isValid;
+    }
+  </script>
+</body>
+</html>
